@@ -1,0 +1,11 @@
+system Crossroads(n: int):
+  var cars: int[n]
+  var openLanes: bool[n]
+
+  behaviour carsArriving = grow(cars)
+  behaviour[n](+openLanes[n]) carsLeaving = shrink(cars[n])
+
+regulator Lights(n: int, stateGroups: int[n]) on Crossroads(n):
+    regulate openLanes
+
+run Lights(4, [0, 0, 1, 1]) on Crossroads(4)
