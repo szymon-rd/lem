@@ -1,7 +1,8 @@
-package pl.simonr.lem.parser
+package pl.simonr.lem.compiler.parser
 
 import fastparse.{P, *}
 import Parser.*
+import pl.simonr.lem.compiler.Ast
 
 object CommandStatements {
 

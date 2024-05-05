@@ -1,7 +1,7 @@
-package pl.simonr.lem.parser
+package pl.simonr.lem.compiler.parser
 
 import fastparse.*
-import pl.simonr.lem.parser.Parser.ws
+import Parser.ws
 
 
 trait Statements(nesting: Int) {

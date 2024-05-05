@@ -1,7 +1,10 @@
-package pl.simonr.lem.parser
+package pl.simonr.lem.compiler.parser
 
 import fastparse.*
-import Ast.*
+import pl.simonr.lem.compiler.Ast
+import pl.simonr.lem.compiler.Ast.*
+
+import java.lang
 
 object Parser {
   val spacesInTab = 2
@@ -18,7 +21,7 @@ object Parser {
 
   def compilationUnit[$: P]: P[CompilationUnit] = P(topLevelDef.repX.? ~~ newline.repX.? ~~ End).map(xs => Ast.CompilationUnit(xs.toList.flatten))
   def topLevelDef[$: P]: P[TopLevelDef]         = P(newline.repX ~~ (systemDef | regulatorDef | CommandStatements.commandStatement))
-  def systemDef[$: P]: P[System] = P("system" ~ identifier ~~ parametersList.? ~~ defOpen ~~ newline ~~ SystemStatements(1).systemStatements)
+  def systemDef[$: P]: P[lang.System] = P("system" ~ identifier ~~ parametersList.? ~~ defOpen ~~ newline ~~ SystemStatements(1).systemStatements)
     .map(Ast.System.apply.tupled)
   def regulatorDef[$: P]: P[Regulator] = P("regulator" ~ identifier ~~ parametersList.? ~ "on" ~ expression ~~ defOpen ~~ newline ~~ RegulatorStatements(1).regulatorStatements)
     .map(Ast.Regulator.apply.tupled)

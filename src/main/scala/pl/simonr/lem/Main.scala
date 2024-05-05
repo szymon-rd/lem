@@ -1,7 +1,7 @@
 package pl.simonr.lem
 
-import pl.simonr.lem.parser.Parser
 import fastparse.*
+import pl.simonr.lem.compiler.parser.Parser
 
 @main
 def main: Unit =

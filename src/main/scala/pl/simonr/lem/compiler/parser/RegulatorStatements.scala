@@ -1,7 +1,8 @@
-package pl.simonr.lem.parser
+package pl.simonr.lem.compiler.parser
 
 import fastparse.*
-import pl.simonr.lem.parser.Parser.*
+import Parser.*
+import pl.simonr.lem.compiler.Ast
 
 class RegulatorStatements(nesting: Int) extends Statements(nesting) {
 

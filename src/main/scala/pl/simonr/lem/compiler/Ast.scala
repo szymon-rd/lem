@@ -1,7 +1,8 @@
-package pl.simonr.lem.parser
+package pl.simonr.lem.compiler
 
 object Ast {
   sealed trait AstNode {
+    val id = NodeIds.nextId()
     def prettyPrint: fansi.Str =
       pprint(this)
   }
@@ -14,7 +15,7 @@ object Ast {
   case class IntConst(value: Long) extends Constant
   case class ArrayConst(values: List[Expression]) extends Constant
   case class ArrayAccess(array: Expression, index: Expression) extends Expression
-
+ 
   case class FunctionCall(name: Identifier, arguments: List[Expression]) extends Expression
 
   case class Type(name: Identifier, arraySize: Option[Expression]) extends AstNode
@@ -41,5 +42,4 @@ object Ast {
   
   sealed trait CommandStatement extends TopLevelDef
   case class RunStatement(regulator: Expression, system: Expression) extends CommandStatement
-  
 }
